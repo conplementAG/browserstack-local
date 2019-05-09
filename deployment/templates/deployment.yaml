@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.DeploymentName }}
+  labels: 
+    app: {{ .Values.DeploymentName }}
+    team: {{ .Values.Team }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ .Chart.Name }}
+    environment-tag: {{ .Values.EnvironmentTag }}
+spec:
+  replicas: {{ .Values.ReplicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.DeploymentName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.DeploymentName }}
+    spec:
+      containers:
+      - name: {{ .Values.DeploymentName }}-container
+        image: binaryguy/browserstacklocaltesting:latest
+        args: ["$(browserstack_accesstoken)", "--verbose", "2", "--force-local", "--enable-logging-for-api"]
+        env:
+          - name: browserstack_accesstoken
+            valueFrom:
+              secretKeyRef:
+                name: browserstacksecret
+                key: accesstoken          

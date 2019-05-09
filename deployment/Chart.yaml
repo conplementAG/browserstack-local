@@ -1,0 +1,4 @@
+name: bslocaldeploy
+version: 1.0.1
+appVersion: 1.0.1
+description: Deployment for browserstack local testing

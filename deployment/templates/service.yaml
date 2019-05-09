@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.ServiceName }}
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app: {{ .Chart.Name }}
+    environment-tag: {{ .Values.EnvironmentTag }}
+spec:
+  selector:
+    app: {{ .Values.DeploymentName }}
+  ports:
+  - protocol: TCP
+    port: {{ 80 }}
+    targetPort: {{ 80 }}

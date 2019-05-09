@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  browserstack-local-testing:
+    image: binaryguy/browserstacklocaltesting
+    build:
+      context: .
+    entrypoint:
+        - /usr/local/bin/BrowserStackLocal
+        - --key
+        - ${BS_ACCESS_KEY}
+        - --verbose 2
+        - --force-local
+        - --enable-logging-for-api

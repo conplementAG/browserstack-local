@@ -1,0 +1,14 @@
+DeploymentName: bslocaldeploy
+ServiceName: bslocaldeploy
+Team: conplement
+ReplicaCount: 1
+Environment: dev
+ImageName: browserstacklocaltesting
+ImageVersion: 0.0.1
+
+EnvironmentTag: should_be_changed
+
+RequestsMemory: 50Mi
+RequestsCpu: 100m
+LimitsMemory: 100Mi
+LimitsCpu: 200m
