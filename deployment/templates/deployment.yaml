@@ -20,11 +20,13 @@ spec:
     spec:
       containers:
       - name: {{ .Values.DeploymentName }}-container
-        image: binaryguy/browserstacklocaltesting:latest
-        args: ["$(browserstack_accesstoken)", "--verbose", "2", "--force-local", "--enable-logging-for-api"]
-        env:
-          - name: browserstack_accesstoken
-            valueFrom:
-              secretKeyRef:
-                name: browserstacksecret
-                key: accesstoken          
+        image: conplementag/browserstack-local:latest
+        command: ["/usr/local/bin/BrowserStackLocal"]
+        args: ["{{ .Values.Browserstack_AccessToken }}", "--verbose", "2", "--force-local", "--enable-logging-for-api", "--only-automate", "--local-identifier", "{{ .Values.Browserstack_Local_Identifier }}"]
+        resources:
+          requests:
+            memory: {{ .Values.RequestsMemory }}
+            cpu: {{ .Values.RequestsCpu }}
+          limits:
+            memory: {{ .Values.LimitsMemory }}
+            cpu: {{ .Values.LimitsCpu }}  

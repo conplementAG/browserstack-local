@@ -3,10 +3,10 @@ ServiceName: bslocaldeploy
 Team: conplement
 ReplicaCount: 1
 Environment: dev
-ImageName: browserstacklocaltesting
-ImageVersion: 0.0.1
 
 EnvironmentTag: should_be_changed
+Browserstack_AccessToken: should_be_changed
+Browserstack_Local_Identifier: should_be_changed
 
 RequestsMemory: 50Mi
 RequestsCpu: 100m
